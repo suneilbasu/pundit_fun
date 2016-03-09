@@ -4,7 +4,12 @@
 <% if user_signed_in? %>
   <div class= 'col-md-5'><p>you are signed in as... <%= current_user.first_name %> <%= current_user.last_name%> </div>
 <% end %>
-
+  <div class= 'col-md-10 col-md-offset-1-'>
+    <%= form_for (@newReport) do |h| %>
+      <%= h.text_field :story %>
+      <%= h.submit 'add' %>
+    <% end %>
+  </div>
   <div class= 'col-md-10 col-md-offset-1-'>
     <% @reports.each do |h| %>
       <li> <%= h.story %></li>
