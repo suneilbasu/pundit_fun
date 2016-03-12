@@ -2,9 +2,9 @@
 <div class = "container">
 <h1>New Articles</h1>
 <% if user_signed_in? %>
-  <div class= 'col-md-5'><p>you are signed in as... <%= current_user.first_name %> <%= current_user.last_name%> </div>
+  <div class= 'col-md-12'><p>you are signed in as... <%= current_user.first_name %> <%= current_user.last_name%> <%= current_user.id%></div>
 <% end %>
-  <div class= 'col-md-10 col-md-offset-1-'>
+  <div class= 'col-md-5 col-md-offset-1'>
 
     <%= form_for (@newReport), url: journalists_path do |h| %>
       <%= h.text_field :story %>
@@ -12,9 +12,10 @@
     <% end %>
 
   </div>
-  <div class= 'col-md-10 col-md-offset-1-'>
+  <div class= 'col-md-6'>
     <% @reports.each do |h| %>
-      <li> <%=truncate(h.story, :length => 12, :separator => '') %></li>
+      <li> <%=truncate(h.story, :length => 14, :separator => '') %>
+      <%=h.user_id %></li>
     <% end %>
   </div>
 </div>
