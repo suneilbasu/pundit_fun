@@ -1,14 +1,20 @@
-
+<h1>Journalists#index</h1>
 <div class = "container">
 <h1>New Articles</h1>
 <% if user_signed_in? %>
   <div class= 'col-md-5'><p>you are signed in as... <%= current_user.first_name %> <%= current_user.last_name%> </div>
 <% end %>
+  <div class= 'col-md-10 col-md-offset-1-'>
 
+    <%= form_for (@newReport), url: journalists_path do |h| %>
+      <%= h.text_field :story %>
+      <%= h.submit 'add' %>
+    <% end %>
 
+  </div>
   <div class= 'col-md-10 col-md-offset-1-'>
     <% @reports.each do |h| %>
-      <li> <%= h.story %></li>
+      <li> <%=truncate(h.story, :length => 12, :separator => '') %></li>
     <% end %>
   </div>
 </div>

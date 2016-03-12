@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'journalists/index'
+
 devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
@@ -8,7 +10,9 @@ devise_for :users, :controllers => { registrations: 'registrations' }
   # You can have the root of your site routed with "root"
   get 'welcome/new'
   get 'welcome/index'
-  
+  get 'journalists/index'
+  get 'journalists/new'
+  resources :journalists
   root 'welcome#index'
 
   # Example of regular route:
