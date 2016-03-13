@@ -6,6 +6,7 @@
 <% end %>
   <div class= 'col-md-5 col-md-offset-1'>
 
+<%= params.inspect %>
     <%= form_for (@newReport), url: journalists_path do |h| %>
       <%= h.text_field :story %>
       <%= h.submit 'add' %>

@@ -4,7 +4,7 @@ class JournalistsController < ApplicationController
     @newReport = Report.new
   end
   def create
-    @newReport = Report.new(report_params)
+    @newReport = current_user.reports.new(report_params)
     if @newReport.save
       redirect_to :action => 'index'
     else
@@ -12,6 +12,6 @@ class JournalistsController < ApplicationController
     end
   end
   def report_params
-    params.require(:report).permit(:story)
+    params.require(:report).permit(:story, :user_id)
   end
 end
