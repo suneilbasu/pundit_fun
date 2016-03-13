@@ -1,6 +1,10 @@
 class WelcomeController < ApplicationController
   def index
     @reports = Report.all
+
+  if user_signed_in? 
+      @myreports = Report.all.where(user_id: current_user.id)
+  end
     @newReport = Report.new
   end
   def create
