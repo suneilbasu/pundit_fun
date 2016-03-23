@@ -5,8 +5,12 @@
   <div class= 'col-md-12'><p>you are signed in as... <%= current_user.first_name %> <%= current_user.last_name%> <%= current_user.id%></div>
 <% end %>
   <div class= 'col-md-5 col-md-offset-1'>
-
-<%= params.inspect %>
+    <h2> Filter </h2>
+    <%= form_tag users_path, :method => 'get' do %>
+      <%= collection_select(:user, :user_id, User.all, :id, :first_name, prompt: true) %>
+      <%= submit_tag "search" %>
+    <% end %>
+    <h2> New Report </h2>
     <%= form_for (@newReport), url: journalists_path do |h| %>
       <%= h.text_field :story %>
       <%= h.submit 'add' %>
@@ -16,7 +20,10 @@
   <div class= 'col-md-6'>
     <% @reports.each do |h| %>
       <li> <%=truncate(h.story, :length => 14, :separator => '') %>
-      <%=h.user_id %></li>
+      <%=h.user_id %>
+      <p>written by
+      <%=h.user.first_name %></p></li>
     <% end %>
   </div>
 </div>
+<%= params.inspect %>
